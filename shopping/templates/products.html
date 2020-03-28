@@ -1,0 +1,106 @@
+{% extends 'base.html' %}
+{% block body %}
+{% load static %}
+<style>
+	.page-banner {
+  		background: rgba(0, 0, 0, 0) url("{% static 'img/background/shop-banner.jpg' %} ") no-repeat center center;
+  		-webkit-background-size: cover;
+  		background-size: cover;
+  		text-align: center;
+	}
+</style>
+<!-- Page Banner Start -->
+<div class="page-banner padding-120 fix">
+	<div class="container">
+		<div class="row">
+			<div class="col-xs-12">
+				<h1>SHOP</h1>
+			</div>
+		</div>
+	</div>
+</div><!-- Page Banner End -->
+<!-- Shop Page Area Start -->
+<div class="shop-page page margin-70 fix">
+	<div class="container">
+		<div class="row">
+			<!-- Shop Tool Bar -->
+			<div class="col-xs-12 fix">
+				<div class="shpo-tool-bar fix">
+					<ul class="view-mode float-left">
+						<li class="active"><a href="shop.html#pro-grid" data-toggle="tab"><i class="fa fa-th"></i></a></li>
+						<li><a href="shop.html#pro-list" data-toggle="tab"><i class="fa fa-th-list"></i></a></li>
+					</ul>
+					<div class="sort-by float-left">
+						<span>Sort By</span>
+						<select name="sort-by">
+							<option value="mercede" selected="selected">price: Lower</option>
+							<option value="saab">price(low&gt;high)</option>
+							<option value="mercedes">price(high &gt; low)</option>
+							<option value="audi">rating(highest)</option>
+						</select>
+					</div>
+					<div class="show-product float-left">
+						<span>Show</span>
+						<select name="sort-by">
+							<option value="mercede" selected="selected">16</option>
+							<option value="saab">20</option>
+							<option value="mercedes">24</option>
+						</select>
+						<span>Per Page</span>
+					</div>
+					<div class="showing-pro float-right">
+						<span>Showing 1 - 12 of 16 items</span>
+					</div>
+				</div>
+			</div>
+			<div class="products-container tab-products-container tab-content float-left fix">
+				<div class="tab-pane active" id="pro-grid">
+					<!-- Single Product -->
+					{%for i in subcat.product_set.all%}
+					<div class="col-sm-4 col-md-3 col-xs-12">
+						<div class="single-product">
+							<div class="pro-image-hover">
+								<a href="shop.html#" class="pro-image">
+									<img class="primary" src="{{i.img1.url}}" alt="" />
+								</a>
+								<div class="action-buttons">
+									{% if request.user.is_authenticated %}
+									<a href="{% url 'cart' i.id %}"> <button class="act-btn add-cart"><i class="fa fa-shopping-basket"></i></button></a>
+									{% else %}
+									<a href="{% url 'login' %}"> <button class="act-btn add-cart"><i class="fa fa-shopping-basket"></i></button></a>
+									{% endif %}
+
+								</div>
+							</div>
+							<div class="pro-bref fix">
+								<a class="pro-name" href="{% url 'product_details' i.id %}">{{ i.name }}</a>
+								<div class="pro-ratting float-left">
+									<i class="fa fa-star on"></i>
+									<i class="fa fa-star on"></i>
+									<i class="fa fa-star on"></i>
+									<i class="fa fa-star on"></i>
+									<i class="fa fa-star"></i>
+								</div>
+								<div class="pro-price float-right"><span class="new">{{ i.price }}</span></div>
+							</div>
+						</div>
+					</div>
+					{% endfor %}
+					<!-- Single Product -->
+
+			<div class="col-xs-12">
+				<div class="paginations text-center">
+					<ul>
+						<li class="prev"><a href="shop.html#"><i class="fa fa-angle-left"></i></a></li>
+						<li class="active"><span>1</span></li>
+						<li><a href="shop.html#">2</a></li>
+						<li><a href="shop.html#">3</a></li>
+						<li><a href="shop.html#">4</a></li>
+						<li class="next"><a href="shop.html#"><i class="fa fa-angle-right"></i></a></li>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</div>
+</div><!-- Shop page Area End -->	
+{% endblock %}

@@ -1,0 +1,542 @@
+
+{% extends 'base2.html' %}
+{% block body %}
+{% load static %}
+<!-- HOME SLIDER -->
+<div class="slider-wrap">
+	<div id="mainSlider" class="nivoSlider slider-image">
+		<img src="{% static 'img/slider/slider-2.jpg' %}" alt="main slider" title="#htmlcaption1"/>
+		<img src="{% static 'img/slider/slider-1.jpg' %}" alt="main slider" title="#htmlcaption2"/>
+	</div>
+	<div id="htmlcaption1" class="nivo-html-caption">
+		<div class="slider-progress"></div>
+		<div class="slide-text-right text-black slide-text">
+			<div class="middle-text text-center">
+				<h3 class="cap-sub-title wow fadeInDown" data-wow-duration=".9s" data-wow-delay="0.8s">new collection</h3>
+				<h1 class="cap-title wow flipInX" data-wow-duration=".9s" data-wow-delay="1.5s">Women’s Fashion</h1>
+				<h2 class="cap-dec wow rotateInUpRight" data-wow-duration="0.9s" data-wow-delay="2.2s">Save Up To 40% Off</h2>
+				<a href="index.html#" class="cap-readmore wow bounceIn" data-wow-duration="0.9s" data-wow-delay="3s">Shop Now</a>
+			</div>
+		</div>
+	</div>
+	<div id="htmlcaption2" class="nivo-html-caption">
+		<div class="slider-progress"></div>
+		<div class="slide-text-left text-white slide-text">
+			<div class="middle-text text-center">
+				<h3 class="cap-sub-title wow fadeInUp" data-wow-duration=".9s" data-wow-delay="0.8s">new collection</h3>
+				<h1 class="cap-title wow lightSpeedIn" data-wow-duration=".9s" data-wow-delay="1.5s">Men’s Fashion</h1>
+				<h2 class="cap-dec wow rollIn" data-wow-duration="0.9s" data-wow-delay="2.2s">Save Up To 40% Off</h2>
+				<a href="index.html#" class="cap-readmore wow fadeInUp" data-wow-duration="0.9s" data-wow-delay="3s">Shop Now</a>
+			</div>
+		</div>
+	</div>
+</div>
+<!-- HOME SLIDER -->
+<!-- Top Banner Start -->
+<div class="top-banner margin-top-70 fix">
+	<div class="container">
+		<div class="row">
+			<div class="top-banner-wrap">
+				<div class="col-sm-4 col-xs-12">
+					<div class="single-banner fix">
+						<img src="{% static 'img/add/3.jpg' %}" alt="" />
+						<a href="index.html#"><h2>mens</h2></a>
+					</div>
+				</div>
+				<div class="col-sm-4 col-xs-12">
+					<div class="single-banner fix">
+						<img src="{% static 'img/add/2.jpg' %}" alt="" />
+						<a href="index.html#"><h2>womens</h2></a>
+					</div>
+				</div>
+				<div class="col-sm-4 col-xs-12">
+					<div class="single-banner fix">
+						<img src="{% static 'img/add/1.jpg' %}" alt="" />
+						<a href="index.html#"><h2>accesories</h2></a>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div><!-- Top Banner End -->
+<!-- Propular Product Area Start -->
+<div class="propular-product margin-top-70 fix">
+	<div class="container">
+		<div class="row">
+			<div class="col-xs-12">
+				<div class="section-title fix">
+					<h2>Popular Product</h2>
+				</div>
+			</div>
+			<div class="col-xs-12">
+				<div class="propular-slider owl-carousel">
+					{% for i in last_five %}
+					<!-- Single Tab Product -->
+					<div class="single-product">
+						<div class="pro-image-hover">
+							<a href="index.html#" class="pro-image">
+								<img class="primary" src="{{ i.img1.url }}" alt="" />
+							</a>
+							<div class="action-buttons">
+								<a class="act-btn quick-view" href="index.html#"><i class="fa fa-search"></i></a>
+								<a class="act-btn favorite" href="index.html#"><i class="fa fa-heart-o"></i></a>
+								<button class="act-btn add-cart"><i class="fa fa-shopping-basket"></i></button>
+							</div>
+						</div>
+						<div class="pro-bref fix">
+							<a class="pro-name" href="product-details.html">{{ i.name }}</a>
+							<div class="pro-ratting float-left">
+								<i class="fa fa-star on"></i>
+								<i class="fa fa-star on"></i>
+								<i class="fa fa-star on"></i>
+								<i class="fa fa-star on"></i>
+								<i class="fa fa-star"></i>
+							</div>
+							<div class="pro-price float-right"><span class="new">&#8377;{{ i.price }}</span></div>
+						</div>
+					</div>
+					<!-- Single Tab Product -->
+					{% endfor %}
+				</div>
+			</div>
+		</div>
+	</div>
+</div><!-- Propular Product Area End -->
+<!-- Tab Product Area Start -->
+<div class="tab-products fix">
+	<div class="container">
+		<div class="row">
+			<div class="col-xs-12">
+				<!-- Product Tan List -->
+				<ul class="pro-tab-list fix">
+					{% for i in subcat %}
+					{% if forloop.counter == 1 %}
+					<li class="active"><a href="#{{ forloop.counter }}" data-toggle="tab">{{ i.name }}</a></li>
+					{% else %}
+					<li><a href="#{{ forloop.counter }}" data-toggle="tab">{{ i.name }}</a></li>
+					{% endif %}
+					{% endfor %}
+				</ul>
+			</div>
+			<!-- Tab Product Content Container Start -->
+			<div class="tab-content tab-products-container">
+				{% for i in subcat %}
+				{% if forloop.counter == 1 %}
+				<!-- New Arrivals Tab -->
+				<div class="tab-pane active" id="{{ forloop.counter }}">
+					{% else %}
+					<div class="tab-pane " id="{{ forloop.counter }}">
+					{% endif %}
+					{% for j in i.product_set.all %}
+					<!-- Single Tab Product -->
+					<div class="col-sm-4 col-md-3 col-xs-12">
+						<div class="single-product">
+							<div class="pro-image-hover">
+								<a href="index.html#" class="pro-image">
+									<img class="primary" src="{{ j.img1.url }}" alt="" />
+								</a>
+								<div class="action-buttons">
+									<a class="act-btn quick-view" href="index.html#"><i class="fa fa-search"></i></a>
+									<a class="act-btn favorite" href="index.html#"><i class="fa fa-heart-o"></i></a>
+									<button class="act-btn add-cart"><i class="fa fa-shopping-basket"></i></button>
+								</div>
+							</div>
+							<div class="pro-bref fix">
+								<a class="pro-name" href="product-details.html">{{ j.name }}</a>
+								<div class="pro-ratting float-left">
+									<i class="fa fa-star on"></i>
+									<i class="fa fa-star on"></i>
+									<i class="fa fa-star on"></i>
+									<i class="fa fa-star on"></i>
+									<i class="fa fa-star"></i>
+								</div>
+								<div class="pro-price float-right"><span class="new">{{ j.price }}</span></div>
+							</div>
+						</div>
+					</div>
+					{% endfor %}
+					<!-- Single Tab Product -->
+
+				</div>
+				{% endfor %}
+
+			</div><!-- Tab Product Content Container End -->
+		</div>
+	</div>
+</div><!-- Tab Product Area End -->
+<!-- Collection Banner Start -->
+<div class="collection-banner fix">
+	<div class="overlay padding-150">
+		<div class="container">
+			<div class="row">
+				<div class="col-xs-12">
+					<h1>EXCLUSIVE COLLECTION FOR</h1>
+					<h1><a href="index.html#">MEN</a> - <a href="index.html#">WOMEN</a> - <a href="index.html#">KIDS</a></h1>
+				</div>
+			</div>
+		</div>
+	</div>
+</div><!-- Collection Banner End -->
+<!-- Banner Start <-->
+<div class="banner-area margin-top-70">
+	<div class="container">
+		<div class="row">
+			<div class="col-sm-4 col-xs-12">
+				<div class="single-banner banner-space">
+					<a href="index.html#"><img alt="" src="{% static 'img/banner/1.jpg' %}"></a>
+				</div>
+				<div class="single-banner">
+					<a href="index.html#"><img alt="" src="{% static 'img/banner/2.jpg' %}"></a>
+				</div>
+			</div>
+			<div class="col-sm-4 col-xs-12">
+				<div class="single-banner banner-space">
+					<a href="index.html#"><img alt="" src="{% static 'img/banner/3.jpg' %}"></a>
+				</div>
+				<div class="single-banner">
+					<a href="index.html#"><img alt="" src="{% static 'img/banner/4.jpg' %}"></a>
+				</div>
+			</div>
+			<div class="col-sm-4 col-xs-12">
+				<div class="single-banner banner-space">
+					<a href="index.html#"><img alt="" src="{% static 'img/banner/5.jpg' %}"></a>
+				</div>
+				<div class="single-banner">
+					<a href="index.html#"><img alt="" src="{% static 'img/banner/6.jpg' %}"></a>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<!-- Feature Product Area Start -->
+<div class="feature-product margin-70 fix">
+	<div class="container">
+		<div class="row">
+			<div class="col-xs-12">
+				<div class="section-title fix">
+					<h2>Feature Product</h2>
+				</div>
+			</div>
+			<div class="col-xs-12">
+				<div class="feature-slider owl-carousel">
+					<!-- Single Product -->
+					<div class="sin-item">
+						<div class="sin-mini-product fix">
+							<a href="index.html#" class="pro-image-2 float-left">
+								<img class="primary" src="{% static 'img/feature/1.jpg' %}" alt="" />
+							</a>
+							<div class="pro-bref-2 float-left fix">
+								<a class="pro-name" href="product-details.html">Product Name Demo</a>
+								<div class="pro-price"><span class="new">$152</span><span class="old">$175</span></div>
+								<div class="pro-ratting">
+									<i class="fa fa-star on"></i>
+									<i class="fa fa-star on"></i>
+									<i class="fa fa-star on"></i>
+									<i class="fa fa-star on"></i>
+									<i class="fa fa-star"></i>
+								</div>
+							</div>
+						</div>
+						<div class="sin-mini-product fix">
+							<a href="index.html#" class="pro-image-2 float-left">
+								<img class="primary" src="{% static 'img/feature/2.jpg' %}" alt="" />
+							</a>
+							<div class="pro-bref-2 float-left fix">
+								<a class="pro-name" href="product-details.html">Product Name Demo</a>
+								<div class="pro-price"><span class="new">$152</span><span class="old">$175</span></div>
+								<div class="pro-ratting">
+									<i class="fa fa-star on"></i>
+									<i class="fa fa-star on"></i>
+									<i class="fa fa-star on"></i>
+									<i class="fa fa-star on"></i>
+									<i class="fa fa-star"></i>
+								</div>
+							</div>
+						</div>
+						<div class="sin-mini-product fix">
+							<a href="index.html#" class="pro-image-2 float-left">
+								<img class="primary" src="{% static 'img/feature/3.jpg' %}" alt="" />
+							</a>
+							<div class="pro-bref-2 float-left fix">
+								<a class="pro-name" href="product-details.html">Product Name Demo</a>
+								<div class="pro-price"><span class="new">$152</span><span class="old">$175</span></div>
+								<div class="pro-ratting">
+									<i class="fa fa-star on"></i>
+									<i class="fa fa-star on"></i>
+									<i class="fa fa-star on"></i>
+									<i class="fa fa-star on"></i>
+									<i class="fa fa-star"></i>
+								</div>
+							</div>
+						</div>
+					</div>
+					<!-- Single Product -->
+					<div class="sin-item">
+						<div class="sin-mini-product fix">
+							<a href="index.html#" class="pro-image-2 float-left">
+								<img class="primary" src="{% static 'img/feature/4.jpg' %}" alt="" />
+							</a>
+							<div class="pro-bref-2 float-left fix">
+								<a class="pro-name" href="product-details.html">Product Name Demo</a>
+								<div class="pro-price"><span class="new">$152</span><span class="old">$175</span></div>
+								<div class="pro-ratting">
+									<i class="fa fa-star on"></i>
+									<i class="fa fa-star on"></i>
+									<i class="fa fa-star on"></i>
+									<i class="fa fa-star on"></i>
+									<i class="fa fa-star"></i>
+								</div>
+							</div>
+						</div>
+						<div class="sin-mini-product fix">
+							<a href="index.html#" class="pro-image-2 float-left">
+								<img class="primary" src="{% static 'img/feature/5.jpg' %}" alt="" />
+							</a>
+							<div class="pro-bref-2 float-left fix">
+								<a class="pro-name" href="product-details.html">Product Name Demo</a>
+								<div class="pro-price"><span class="new">$152</span><span class="old">$175</span></div>
+								<div class="pro-ratting">
+									<i class="fa fa-star on"></i>
+									<i class="fa fa-star on"></i>
+									<i class="fa fa-star on"></i>
+									<i class="fa fa-star on"></i>
+									<i class="fa fa-star"></i>
+								</div>
+							</div>
+						</div>
+						<div class="sin-mini-product fix">
+							<a href="index.html#" class="pro-image-2 float-left">
+								<img class="primary" src="{% static 'img/feature/6.jpg' %}" alt="" />
+							</a>
+							<div class="pro-bref-2 float-left fix">
+								<a class="pro-name" href="product-details.html">Product Name Demo</a>
+								<div class="pro-price"><span class="new">$152</span><span class="old">$175</span></div>
+								<div class="pro-ratting">
+									<i class="fa fa-star on"></i>
+									<i class="fa fa-star on"></i>
+									<i class="fa fa-star on"></i>
+									<i class="fa fa-star on"></i>
+									<i class="fa fa-star"></i>
+								</div>
+							</div>
+						</div>
+					</div>
+					<!-- Single Product -->
+					<div class="sin-item">
+						<div class="sin-mini-product fix">
+							<a href="index.html#" class="pro-image-2 float-left">
+								<img class="primary" src="{% static 'img/feature/7.jpg' %}" alt="" />
+							</a>
+							<div class="pro-bref-2 float-left fix">
+								<a class="pro-name" href="product-details.html">Product Name Demo</a>
+								<div class="pro-price"><span class="new">$152</span><span class="old">$175</span></div>
+								<div class="pro-ratting">
+									<i class="fa fa-star on"></i>
+									<i class="fa fa-star on"></i>
+									<i class="fa fa-star on"></i>
+									<i class="fa fa-star on"></i>
+									<i class="fa fa-star"></i>
+								</div>
+							</div>
+						</div>
+						<div class="sin-mini-product fix">
+							<a href="index.html#" class="pro-image-2 float-left">
+								<img class="primary" src="{% static 'img/feature/8.jpg' %}" alt="" />
+							</a>
+							<div class="pro-bref-2 float-left fix">
+								<a class="pro-name" href="product-details.html">Product Name Demo</a>
+								<div class="pro-price"><span class="new">$152</span><span class="old">$175</span></div>
+								<div class="pro-ratting">
+									<i class="fa fa-star on"></i>
+									<i class="fa fa-star on"></i>
+									<i class="fa fa-star on"></i>
+									<i class="fa fa-star on"></i>
+									<i class="fa fa-star"></i>
+								</div>
+							</div>
+						</div>
+						<div class="sin-mini-product fix">
+							<a href="index.html#" class="pro-image-2 float-left">
+								<img class="primary" src="{% static 'img/feature/3.jpg' %}" alt="" />
+							</a>
+							<div class="pro-bref-2 float-left fix">
+								<a class="pro-name" href="product-details.html">Product Name Demo</a>
+								<div class="pro-price"><span class="new">$152</span><span class="old">$175</span></div>
+								<div class="pro-ratting">
+									<i class="fa fa-star on"></i>
+									<i class="fa fa-star on"></i>
+									<i class="fa fa-star on"></i>
+									<i class="fa fa-star on"></i>
+									<i class="fa fa-star"></i>
+								</div>
+							</div>
+						</div>
+					</div>
+					<!-- Single Product -->
+					<div class="sin-item">
+						<div class="sin-mini-product fix">
+							<a href="index.html#" class="pro-image-2 float-left">
+								<img class="primary" src="{% static 'img/feature/4.jpg' %}" alt="" />
+							</a>
+							<div class="pro-bref-2 float-left fix">
+								<a class="pro-name" href="product-details.html">Product Name Demo</a>
+								<div class="pro-price"><span class="new">$152</span><span class="old">$175</span></div>
+								<div class="pro-ratting">
+									<i class="fa fa-star on"></i>
+									<i class="fa fa-star on"></i>
+									<i class="fa fa-star on"></i>
+									<i class="fa fa-star on"></i>
+									<i class="fa fa-star"></i>
+								</div>
+							</div>
+						</div>
+						<div class="sin-mini-product fix">
+							<a href="index.html#" class="pro-image-2 float-left">
+								<img class="primary" src="{% static 'img/feature/1.jpg' %}" alt="" />
+							</a>
+							<div class="pro-bref-2 float-left fix">
+								<a class="pro-name" href="product-details.html">Product Name Demo</a>
+								<div class="pro-price"><span class="new">$152</span><span class="old">$175</span></div>
+								<div class="pro-ratting">
+									<i class="fa fa-star on"></i>
+									<i class="fa fa-star on"></i>
+									<i class="fa fa-star on"></i>
+									<i class="fa fa-star on"></i>
+									<i class="fa fa-star"></i>
+								</div>
+							</div>
+						</div>
+						<div class="sin-mini-product fix">
+							<a href="index.html#" class="pro-image-2 float-left">
+								<img class="primary" src="{% static 'img/feature/6.jpg' %}" alt="" />
+							</a>
+							<div class="pro-bref-2 float-left fix">
+								<a class="pro-name" href="product-details.html">Product Name Demo</a>
+								<div class="pro-price"><span class="new">$152</span><span class="old">$175</span></div>
+								<div class="pro-ratting">
+									<i class="fa fa-star on"></i>
+									<i class="fa fa-star on"></i>
+									<i class="fa fa-star on"></i>
+									<i class="fa fa-star on"></i>
+									<i class="fa fa-star"></i>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div><!-- Propular Product Area End -->
+<!-- Testimonial Start -->
+<div class="testimonial padding-70 fix">
+	<div class="container">
+		<div class="row">
+			<div class="col-md-8 col-md-offset-2 col-xs-12">
+				<!-- Testimonial Slider -->
+				<div class="testimonial-slider owl-carousel text-center">
+					<!-- Single Testimonial -->
+					<div class="sin-testimonial">
+						<div class="image fix"><img src="{% static 'img/testimonial/1.jpg' %}" alt="" /></div>
+						<div class="content fix">
+							<p>Lorem ipsum dolor sit amet, consectetur adiising elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua...</p>
+							<h4>Zasika Williams</h4>
+							<span>CEO Zackas Fashion</span>
+						</div>
+					</div>
+					<div class="sin-testimonial">
+						<div class="image fix"><img src="{% static 'img/testimonial/1.jpg' %}" alt="" /></div>
+						<div class="content fix">
+							<p>Lorem ipsum dolor sit amet, consectetur adiising elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua...</p>
+							<h4>Zasika Williams</h4>
+							<span>CEO Zackas Fashion</span>
+						</div>
+					</div>
+					<div class="sin-testimonial">
+						<div class="image fix"><img src="{% static 'img/testimonial/1.jpg' %}" alt="" /></div>
+						<div class="content fix">
+							<p>Lorem ipsum dolor sit amet, consectetur adiising elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua...</p>
+							<h4>Zasika Williams</h4>
+							<span>CEO Zackas Fashion</span>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div><!-- Testimonial End -->
+<!-- Blog Area Start -->
+<div class="blog-area margin-70 fix">
+	<div class="container">
+		<div class="row">
+			<!-- Blog Area Title -->
+			<div class="col-xs-12">
+				<div class="section-title fix">
+					<h2>Form Blog</h2>
+				</div>
+			</div>
+			<div class="col-xs-12">
+				<!-- Blog Slider -->
+				<div class="blog-slider owl-carousel">
+					<!-- Single Blog -->
+					<div class="single-blog fix">
+						<div class="image">
+							<a href="blog-details.html"><img src="{% static 'img/blog/1.jpg' %}" alt="" /></a>
+						</div>
+						<div class="content fix">
+							<h2><a href="blog-details.html">Lorem ipsum dolor sit amet</a></h2>
+							<p>Lorem ipsum dolor sit amet, consectetur adicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua magna aliqua</p>
+						</div>
+						<div class="blog-foot fix">
+							<a href="index.html#" class="read-more float-left">Read More</a>
+							<span class="blog-date float-right">24 Feb 2016</span>
+						</div>
+					</div>
+					<!-- Single Blog -->
+					<div class="single-blog fix">
+						<div class="image">
+							<a href="blog-details.html"><img src="{% static 'img/blog/2.jpg' %}" alt="" /></a>
+						</div>
+						<div class="content fix">
+							<h2><a href="blog-details.html">Lorem ipsum dolor sit amet</a></h2>
+							<p>Lorem ipsum dolor sit amet, consectetur adicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua magna aliqua</p>
+						</div>
+						<div class="blog-foot fix">
+							<a href="index.html#" class="read-more float-left">Read More</a>
+							<span class="blog-date float-right">24 Feb 2016</span>
+						</div>
+					</div>
+					<!-- Single Blog -->
+					<div class="single-blog fix">
+						<div class="image">
+							<a href="blog-details.html"><img src="{% static 'img/blog/3.jpg' %}" alt="" /></a>
+						</div>
+						<div class="content fix">
+							<h2><a href="blog-details.html">Lorem ipsum dolor sit amet</a></h2>
+							<p>Lorem ipsum dolor sit amet, consectetur adicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua magna aliqua</p>
+						</div>
+						<div class="blog-foot fix">
+							<a href="index.html#" class="read-more float-left">Read More</a>
+							<span class="blog-date float-right">24 Feb 2016</span>
+						</div>
+					</div>
+					<!-- Single Blog -->
+					<div class="single-blog fix">
+						<div class="image">
+							<a href="blog-details.html"><img src="{% static 'img/blog/4.jpg' %}" alt="" /></a>
+						</div>
+						<div class="content fix">
+							<h2><a href="blog-details.html">Lorem ipsum dolor sit amet</a></h2>
+							<p>Lorem ipsum dolor sit amet, consectetur adicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua magna aliqua</p>
+						</div>
+						<div class="blog-foot fix">
+							<a href="index.html#" class="read-more float-left">Read More</a>
+							<span class="blog-date float-right">24 Feb 2016</span>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div><!-- Blog Area End -->
+{% endblock %}

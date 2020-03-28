@@ -1,0 +1,101 @@
+{% extends 'base.html' %}
+{% block body %}
+{% load static %}
+<!-- Page Banner Start -->
+<style>
+	.page-banner {
+  		background: rgba(0, 0, 0, 0) url("{% static 'img/background/shop-banner.jpg' %} ") no-repeat center center;
+  		-webkit-background-size: cover;
+  		background-size: cover;
+  		text-align: center;
+	}
+</style>
+<div class="page-banner padding-120 fix">
+	<div class="container">
+		<div class="row">
+			<div class="col-xs-12">
+				<h1>Signup Form</h1>
+			</div>
+		</div>
+	</div>
+</div><!-- Page Banner End -->
+
+<!-- About Page Start -->
+<div class="about-page page margin-70 fix">
+	<div class="container">
+		<div class="row">
+            <form action="" method="post">
+                {% if error %}
+                   <script>alert('User Already Exists')</script>
+                {% endif %}
+                {% csrf_token %}
+                <div class="col-md-12">
+                    <div class="col-lg-4">
+                    </div>
+                    <div class="col-lg-4">
+                        <input class="form-control" type="text" placeholder="Enter User Name" name="user">
+                    </div>
+                    <div class="col-lg-4">
+                    </div>
+                </div>
+                <br><br><br>
+                <div class="col-md-12">
+                    <div class="col-lg-4">
+                    </div>
+                    <div class="col-lg-4">
+                         <input class="form-control" type="password" placeholder="Enter Password" name="pwd">
+                    </div>
+                    <div class="col-lg-4">
+                    </div>
+                </div>
+                <br><br><br>
+                <div class="col-md-12">
+                    <div class="col-lg-4">
+                    </div>
+                    <div class="col-lg-4">
+                         <input class="form-control" type="text" placeholder="Enter Name" name="name">
+                    </div>
+                    <div class="col-lg-4">
+                    </div>
+                </div>
+                <br><br><br>
+                <div class="col-md-12">
+                    <div class="col-lg-4">
+                    </div>
+                    <div class="col-lg-4">
+                         <input class="form-control" type="text" placeholder="Enter Mobile No." name="mobile">
+                    </div>
+                    <div class="col-lg-4">
+                    </div>
+                </div>
+                <br><br><br>
+                <div class="col-md-12">
+                    <div class="col-lg-4">
+                    </div>
+                    <div class="col-lg-4">
+                         <input class="form-control" type="email" placeholder="Enter Email" name="email">
+                    </div>
+                    <div class="col-lg-4">
+                    </div>
+                </div>
+                <br><br><br>
+                <div class="col-md-12">
+                    <div class="col-lg-4">
+                    </div>
+                    <div class="col-lg-4">
+                         <input class="form-control" type="text" placeholder="Enter Address" name="address">
+                    </div>
+                    <div class="col-lg-4">
+                    </div>
+                </div>
+                <br><br><br>
+                <div class="col-md-12">
+                    <center>
+                        <input class="btn btn-info" type="submit" value="Signup" >
+                    </center>
+
+                </div>
+            </form>
+	</div>
+</div><!-- About Page End -->
+{% endblock %}

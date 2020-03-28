@@ -1,0 +1,76 @@
+{% extends 'base2.html' %}
+{% block body %}
+{% load static %}
+<!-- Page Banner Start -->
+<style>
+	.page-banner {
+  		background: rgba(0, 0, 0, 0) url("{% static 'img/background/shop-banner.jpg' %} ") no-repeat center center;
+  		-webkit-background-size: cover;
+  		background-size: cover;
+  		text-align: center;
+	}
+</style>
+<div class="page-banner padding-120 fix">
+	<div class="container">
+		<div class="row">
+			<div class="col-xs-12">
+				<h1>All Sub Category</h1>
+			</div>
+		</div>
+	</div>
+</div>
+<!-- Page Banner End -->
+<div><br>
+    <ul>
+        <li style="float:right;"><span><button class="btn btn-warning"><a href="{% url 'add_subcat' %}"> Add Sub Category</a></button></span></li>
+    </ul>
+</div>
+<!-- About Page Start -->
+<div class="about-page page margin-70 fix">
+	<div class="container">
+		<div class="row">
+            <div class="row">
+			<div class="col-xs-12">
+				<div class="table-responsive">
+					<table class="table cart-table">
+						<thead>
+							<tr>
+								<th class="width-1">SR. NO.</th>
+								<th class="width-2">Sub Category</th>
+								<th class="width-3">Delete</th>
+							</tr>
+						</thead>
+						<tbody>
+							{% for i in allsubcat %}
+							<tr class="carttr_1">
+
+								<td>
+									<div class="cartpage-pro-dec">
+                                        <a href="cart.html#"><h4><center>{{ forloop.counter }}</center></h4></a>
+
+									</div>
+								</td>
+								<td>
+									<div class="cart-page-price">
+										<h4>{{ i.name }}</h4>
+									</div>
+								</td>
+								<td>
+									<div class="cartpage-delete-item">
+										<a title="Remove item" href=""><i class="fa fa-trash-o"></i></a>
+									</div>
+								</td>
+
+							</tr>
+							{% endfor %}
+						</tbody>
+					</table>
+				</div>
+
+			</div>
+		</div>
+
+
+	</div>
+</div><!-- About Page End -->
+{% endblock %}

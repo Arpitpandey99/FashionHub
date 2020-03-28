@@ -1,0 +1,554 @@
+<!doctype html>
+<html class="no-js" lang="">
+<head>
+	{% load static %}
+	<meta charset="utf-8">
+	<meta http-equiv="x-ua-compatible" content="ie=edge">
+	<title>Home One || Zackas</title>
+	<meta name="description" content="">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<!-- Favicon -->
+	<link rel="shortcut icon" type="image/x-icon" href="{% static 'img/favicon.ico">
+
+	<!-- Google Fonts -->
+	<link href='https://fonts.googleapis.com/css?family=Lato:400,100,300,700,900' rel='stylesheet' type='text/css'>
+	<link href='https://fonts.googleapis.com/css?family=Raleway:400,100,300,600,700,800' rel='stylesheet' type='text/css'>
+
+	<!-- css  -->
+	<!-- Bootstrap CSS -->
+	<link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+	<!-- Font Awesome CSS -->
+	<link rel="stylesheet" href="{% static 'css/font-awesome.min.css' %}">
+	<!-- Mean Menu CSS -->
+	<link rel="stylesheet" href="{% static 'css/meanmenu.min.css' %}">
+	<!-- Owl Carousel CSS -->
+	<link rel="stylesheet" href="{% static 'css/owl.carousel.min.css' %}">
+	<!-- simpleLens CSS -->
+	<link rel="stylesheet" href="{% static 'css/jquery.simpleLens.css' %}">
+	<!-- Price Slider CSS -->
+	<link rel="stylesheet" href="{% static 'css/jquery-price-slider.css' %}">
+	<!-- Nivo Slider CSS -->
+	<link rel="stylesheet" href="{% static 'css/nivo-slider.css' %}">
+	<!-- Animate CSS -->
+	<link rel="stylesheet" href="{% static 'css/animate.min.css' %}">
+	<!-- Hover Effect CSS -->
+	<link rel="stylesheet" href="{% static 'css/hover-effect.css' %}">
+	<!-- Style CSS -->
+	<link rel="stylesheet" href="{% static 'css/style.css' %}">
+	<!-- Responsive CSS -->
+	<link rel="stylesheet" href="{% static 'css/responsive.css' %}">
+	<!-- Modernizer JS -->
+	<script src="{% static 'js/modernizr-2.8.3.min.js' %}"></script>
+</head>
+<body>
+<!-- Header Area Start -->
+<div class="header">
+	<!-- Header Top Start -->
+	<div class="header-top">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-5 col-xs-12">
+					<!-- Header Top Phone and Email -->
+					<div class="header-top-left fix">
+						<div class="phone">
+							<i class="fa fa-phone"></i>
+							<span>(000)  123  288  456</span>
+						</div>
+						<div class="email">
+							<i class="fa fa-envelope"></i>
+							<a href="index.html#">zackas@company.com</a>
+						</div>
+					</div>
+				</div>
+				<div class="col-md-2 col-xs-12">
+					<!-- Header Top Social -->
+					<div class="header-social">
+						<a href="index.html#"><i class="fa fa-facebook"></i></a>
+						<a href="index.html#"><i class="fa fa-twitter"></i></a>
+						<a href="index.html#"><i class="fa fa-linkedin"></i></a>
+						<a href="index.html#"><i class="fa fa-google-plus"></i></a>
+					</div>
+				</div>
+				<div class="col-md-5 col-xs-12">
+					<div class="header-top-right">
+						<!-- Header Top Account -->
+						<ul class="account">
+							<li><a href="index.html#">My Account</a></li>
+						</ul>
+						<!-- Header Top Currency -->
+						<ul class="currency">
+							<li><a href="index.html#" data-toggle="dropdown">$USD</a>
+							<ul class="dropdown-menu">
+								<li><a href="index.html#">URO</a></li>
+								<li><a href="index.html#">GBP</a></li>
+							</ul>
+							</li>
+						</ul>
+						<!-- Header Top Language -->
+						<ul class="language">
+							<li><a href="index.html#" data-toggle="dropdown">English(UK)</a>
+							<ul class="dropdown-menu">
+								<li><a href="index.html#">French</a></li>
+							</ul>
+							</li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div><!-- Header Top End -->
+	<div class="header-bottom">
+		<div class="container">
+			<div class="row">
+				<div class="header-bottom-top col-sm-12">
+					<div class="row">
+						<div class="col-md-3 col-lg-4 col-xs-12">
+							<!-- Header Logo -->
+							<div class="logo"><a href="index.html"><img src="{% static 'img/logo.png' %}" alt="Logo" /></a></div>
+						</div>
+						<div class="col-md-3 col-xs-12">
+							<!-- Header Register Button -->
+							<div class="header-log-reg">
+								<a href="{% url 'login' %}">Login</a>
+								<a href="{% url 'signup' %}">Register</a>
+							</div>
+						</div>
+						<div class="col-md-6 col-lg-5 col-xs-12">
+							<!-- Header Search and Cart -->
+							<div class="header-search-cart">
+								<div class="wrapper">
+									<div class="header-search fix">
+										<form action="#">
+											<div class="select-cat">
+												<select name="categorys">
+													<option value="volvo">All Category</option>
+													<option value="saab">Saab</option>
+													<option value="fiat">Fiat</option>
+													<option value="audi">Audi</option>
+												</select>
+											</div>
+											<div class="input-filds">
+												<input type="text" placeholder="Search here..." />
+												<button class="submit"><i class="fa fa-search"></i></button>
+											</div>
+										</form>
+									</div>
+								<!-- Header Cart -->
+									{% if request.user.is_authenticated %}
+									<div class="header-cart">
+										<a href="index.html#"><i class="fa fa-shopping-basket"></i><span>My cart {{ request.user.add_to_cart_set.count }} items</span></a>
+										<div class="header-cart-hover">
+											<ul class="header-cart-products">
+												{% for i in request.user.add_to_cart_set.all %}
+												<li>
+													<div class="image"><a href="index.html#"><img src="{{ i.product.img1.url }}" alt="cart item" /></a></div>
+													<div class="content fix"><a href="index.html#">{{ i.product.name }}</a><span class="price">{{ i.product.price }}</span></div>
+													<i class="fa fa-times delete"></i>
+												</li>
+												{% endfor %}
+											</ul>
+											<div class="total-price"><h3>Total Price <span>{{ total }}</span></h3></div>
+											<div class="header-cart-action">
+												<a href="{% url 'mycart' %}"><i class="fa fa-shopping-cart"></i><span>view cart</span></a>
+												<a href="checkout.html"><i class="fa fa-sign-out"></i><span>Check Out</span></a>
+											</div>
+										</div>
+									</div>
+									{% endif %}
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<!-- Menu Area Start -->
+				<div class="col-xs-12">
+					<div class="row">
+						<div class="col-xs-12">
+							<!-- Main Menu Start -->
+							<div class="main-menu hidden-sm hidden-xs">
+								<nav>
+									<ul>
+										<li class="active"><a href="{% url 'home' %}">ADMIN HOME</a>
+
+										</li>
+										<li><a href="{% url 'all_cat' %}">ALL CATEGORY</a></li>
+
+										<li class="hot"><a href="{% url 'all_subcat' %}"> ALL SUB CATEGORY</a></li>
+
+
+										<li><a href="{% url 'all_product' %}">ALL PRODUCTS</a></li>
+										<li><a href="{% url 'contact' %}">ORDERS</a></li>
+									</ul>
+								</nav>
+							</div><!-- Main Menu End -->
+							<!-- Mobile Menu Start -->
+							<div class="mobile-menu">
+								<nav class="hidden">
+									<ul>
+										<li class="active"><a href="index.html">HOME</a>
+											<ul class="sub-menu">
+												<li><a href="index.html">HOME 1</a></li>
+												<li><a href="index-2.html">HOME 2</a></li>
+												<li><a href="index-3.html">HOME 3</a></li>
+												<li><a href="index-4.html">HOME 4</a></li>
+											</ul>
+										</li>
+										<li><a href="about.html">ABOUT US</a></li>
+										<li><a href="shop.html">SHOP</a>
+											<ul>
+												<li><a href="shop.html">Dresses</a>
+												<ul>
+													<li><a href="shop.html">Cocktail</a></li>
+													<li><a href="shop.html">Day</a></li>
+													<li><a href="shop.html">Evening</a></li>
+													<li><a href="shop.html">Sweaters</a></li>
+												</ul>
+												</li>
+												<li><a href="shop.html">Accessories</a>
+												<ul>
+													<li><a href="shop.html">Lifestyle</a></li>
+													<li><a href="shop.html">Bras</a></li>
+													<li><a href="shop.html">Scarves</a></li>
+													<li><a href="shop.html">Small Leathers</a></li>
+												</ul>
+												</li>
+												<li><a href="shop.html">Tops</a>
+												<ul>
+													<li><a href="shop.html">T-Shirts</a></li>
+													<li><a href="shop.html">Shrot Sleeved</a></li>
+													<li><a href="shop.html">Sleeveless</a></li>
+													<li><a href="shop.html">Evening</a></li>
+												</ul>
+												</li>
+											</ul>
+										</li>
+										<li><a href="shop.html">MEN</a>
+											<ul>
+												<li><a href="shop.html">Dresses</a>
+												<ul>
+													<li><a href="shop.html">Cocktail</a></li>
+													<li><a href="shop.html">Day</a></li>
+													<li><a href="shop.html">Evening</a></li>
+													<li><a href="shop.html">Sweaters</a></li>
+												</ul>
+												</li>
+												<li><a href="shop.html">Accessories</a>
+												<ul>
+													<li><a href="shop.html">Lifestyle</a></li>
+													<li><a href="shop.html">Bras</a></li>
+													<li><a href="shop.html">Scarves</a></li>
+													<li><a href="shop.html">Small Leathers</a></li>
+												</ul>
+												</li>
+												<li><a href="shop.html">Tops</a>
+												<ul>
+													<li><a href="shop.html">T-Shirts</a></li>
+													<li><a href="shop.html">Shrot Sleeved</a></li>
+													<li><a href="shop.html">Sleeveless</a></li>
+													<li><a href="shop.html">Evening</a></li>
+												</ul>
+												</li>
+											</ul>
+										</li>
+										<li><a href="shop.html">WOMEN</a>
+											<ul>
+												<li><a href="shop.html">Dresses</a>
+												<ul>
+													<li><a href="shop.html">Cocktail</a></li>
+													<li><a href="shop.html">Day</a></li>
+													<li><a href="shop.html">Evening</a></li>
+													<li><a href="shop.html">Sweaters</a></li>
+												</ul>
+												</li>
+												<li><a href="shop.html">Accessories</a>
+												<ul>
+													<li><a href="shop.html">Lifestyle</a></li>
+													<li><a href="shop.html">Bras</a></li>
+													<li><a href="shop.html">Scarves</a></li>
+													<li><a href="shop.html">Small Leathers</a></li>
+												</ul>
+												</li>
+												<li><a href="shop.html">Tops</a>
+												<ul>
+													<li><a href="shop.html">T-Shirts</a></li>
+													<li><a href="shop.html">Shrot Sleeved</a></li>
+													<li><a href="shop.html">Sleeveless</a></li>
+													<li><a href="shop.html">Evening</a></li>
+												</ul>
+												</li>
+											</ul>
+										</li>
+										<li><a href="shop.html">KIDS</a></li>
+										<li class="hot"><a href="shop.html">NEW ARRIVAL</a></li>
+										<li><a href="blog.html">BLOG</a></li>
+										<li><a href="index.html#">PAGES</a>
+											<ul>
+												<li><a href="about.html">ABOUT US</a></li>
+												<li><a href="checkout.html">CHECKOUT</a></li>
+												<li><a href="cart.html">CART</a></li>
+												<li><a href="contact.html">CONTACT</a></li>
+												<li><a href="shop.html">SHOP</a></li>
+												<li><a href="shop-list.html">SHOP LIST</a></li>
+												<li><a href="shop-left-sidebar.html">SHOP LEFT SIDEBAR</a></li>
+												<li><a href="shop-right-sidebar.html">SHOP RIGHT SIDEBAR</a></li>
+												<li><a href="product-details.html">PRODUCT DETAILS</a></li>
+												<li><a href="blog.html">BLOG</a></li>
+												<li><a href="blog-left-sidebar.html">BLOG LEFT SIDEBAR</a></li>
+												<li><a href="blog-right-sidebar.html">BLOG RIGHT SIDEBAR</a></li>
+												<li><a href="blog-details.html">BLOG DETAILS</a></li>
+												<li><a href="404.html">404</a></li>
+											</ul>
+										</li>
+										<li><a href="contact.html">CONTACT</a></li>
+									</ul>
+								</nav>
+							</div><!-- Mobile Menu End -->
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div><!-- Header Area End -->
+
+{% block body %}
+{% endblock %}
+<!-- Brands Area Start -->
+<div class="brands-area padding-70 fix">
+	<div class="container">
+		<div class="row">
+			<!-- Brands Area Title -->
+			<div class="col-xs-12">
+				<div class="section-title fix">
+					<h2>Our Brands</h2>
+				</div>
+			</div>
+			<div class="col-xs-12">
+				<!-- Brands Slider -->
+				<div class="brand-slider owl-carousel">
+					<!-- Single Brand -->
+					<div class="single-brand">
+						<img src="{% static 'img/brands/1.png' %}" alt="" />
+					</div>
+					<!-- Single Brand -->
+					<div class="single-brand">
+						<img src="{% static 'img/brands/2.png' %}" alt="" />
+					</div>
+					<!-- Single Brand -->
+					<div class="single-brand">
+						<img src="{% static 'img/brands/3.png' %}" alt="" />
+					</div>
+					<!-- Single Brand -->
+					<div class="single-brand">
+						<img src="{% static 'img/brands/4.png' %}" alt="" />
+					</div>
+					<!-- Single Brand -->
+					<div class="single-brand">
+						<img src="{% static 'img/brands/5.png' %}" alt="" />
+					</div>
+					<!-- Single Brand -->
+					<div class="single-brand">
+						<img src="{% static 'img/brands/6.png' %}" alt="" />
+					</div>
+					<!-- Single Brand -->
+					<div class="single-brand">
+						<img src="{% static 'img/brands/7.png' %}" alt="" />
+					</div>
+					<!-- Single Brand -->
+					<div class="single-brand">
+						<img src="{% static 'img/brands/8.png' %}" alt="" />
+					</div>
+					<!-- Single Brand -->
+					<div class="single-brand">
+						<img src="{% static 'img/brands/9.png' %}" alt="" />
+					</div>
+					<!-- Single Brand -->
+					<div class="single-brand">
+						<img src="{% static 'img/brands/10.png' %}" alt="" />
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div><!-- Brands Area End -->
+<!-- Service Area Start -->
+<div class="service-area padding-70 fix">
+	<div class="container">
+		<div class="row">
+			<div class="col-sm-6 col-sm-offset-3 col-md-4 col-md-offset-0 col-xs-12">
+				<!-- Single Service -->
+				<div class="single-service">
+					<div class="icon"><i class="fa fa-truck"></i></div>
+					<div class="text fix">
+						<h4>FREE SHIPPING</h4>
+						<p>on all orders over $90</p>
+					</div>
+				</div>
+			</div>
+			<div class="col-sm-6 col-sm-offset-3 col-md-4 col-md-offset-0 col-xs-12">
+				<!-- Single Service -->
+				<div class="single-service">
+					<div class="icon"><i class="fa fa-repeat"></i></div>
+					<div class="text fix">
+						<h4>RETURN EXCHANGE</h4>
+						<p>Return in 30 days use trial</p>
+					</div>
+				</div>
+			</div>
+			<div class="col-sm-6 col-sm-offset-3 col-md-4 col-md-offset-0 col-xs-12">
+				<!-- Single Service -->
+				<div class="single-service">
+					<div class="icon"><i class="fa fa-volume-control-phone"></i></div>
+					<div class="text fix">
+						<h4>ONLINE SUPPORT</h4>
+						<p>Alway support customer 24/7</p>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div><!-- Service Area End -->
+<!-- Subscribe Area Start -->
+<div class="subscribe-social">
+	<div class="container">
+		<div class="row">
+			<div class="col-md-6 col-xs-12">
+				<div class="footer-subscribe">
+					<form action="#" method="post">
+						<div class="input-box">
+						   <input type="text" placeholder="Your Email" name="email">
+						</div>
+						<div class="actions">
+							<input type="submit" value="Subscribe" />
+						</div>
+					</form>
+				</div>
+			</div>
+			<div class="col-md-6 col-xs-12">
+				<div class="social-footer">
+					<ul class="link-follow">
+						<li><a class="twitter fa fa-twitter" href="index.html#"></a></li>
+						<li><a class="google fa fa-google-plus" href="index.html#"></a></li>
+						<li><a class="facebook fa fa-facebook" href="index.html#"></a></li>
+						<li><a class="linkedin fa fa-linkedin" href="index.html#"></a></li>
+						<li><a class="youtube fa fa-youtube" href="index.html#"></a></li>
+						<li><a class="vimeo-square fa fa-vimeo-square" href="index.html#"></a></li>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<!-- Subscribe Area End -->
+<!-- Footer Top Area Start -->
+<div class="footer-top padding-70 fix">
+	<div class="container">
+		<div class="row">
+			<div class="footer-column col-sm-6 col-md-3 col-xs-12">
+				<a href="index.html#" class="logo-footer"><img src="{% static 'img/footer-logo.png' %}" alt=""></a>
+				<div class="footer-content">
+					<p>Vestibulum sagittis, nisl nec pellentesque suscipit, arcu nisi maximus neque, vitae finibus erat odio eu lacus. Curabitur malesuada erat eros, quis dignissim dui accumsan id. Cras non imperdiet metus. Sed nec turpis nec.</p>
+					<a href="index.html#">Continus Reading &gt;&gt;</a>
+				</div>
+			</div>
+			<div class="footer-column col-sm-6 col-md-3 col-xs-12">
+				<div class="footer-title">
+					<h3>Customer service</h3>
+				</div>
+				<div class="footer-content">
+					<ul>
+						<li><a href="index.html#">Sitemap</a></li>
+						<li><a href="index.html#">Privacy Policy</a></li>
+						<li><a href="index.html#">Advanced Search</a></li>
+						<li><a href="index.html#">Privacy Policy</a></li>
+						<li><a href="index.html#">Contact Us</a></li>
+					</ul>
+				</div>
+			</div>
+			<div class="footer-column col-sm-6 col-md-3 col-xs-12">
+				<div class="footer-title">
+					<h3>Payment &amp; Shipping</h3>
+				</div>
+				<div class="footer-content">
+					<ul>
+						<li><a href="index.html#">Product Recall</a></li>
+						<li><a href="index.html#">Gift Vouchers</a></li>
+						<li><a href="index.html#">Returns and Exchanges</a></li>
+						<li><a href="index.html#">Shipping Options</a></li>
+						<li><a href="index.html#">Gift Vouchers</a></li>
+					</ul>
+				</div>
+			</div>
+			<div class="footer-column col-sm-6 col-md-3 col-xs-12">
+				<div class="footer-title">
+					<h3>Contact us</h3>
+				</div>
+				<div class="footer-content">
+					<div class="footer-contact">
+						<p class="adress"><i class="fa fa-map-marker"></i><span>Addresss:</span>Lorem ipsum dolor sit amet, consectetuer adipiscing elit</p>
+						<p class="email"><i class="fa fa-envelope"></i><span>Email:</span> admin@bootexpert.com</p>
+						<p class="phone"><i class="fa fa-phone"></i><span>Phone: +8801737803547</span></p>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<!-- Footer Top Area End -->
+<!-- Footer Bottom Start -->
+<div class="footer-bottom">
+	<div class="container">
+		<div class="row">
+			<div class="col-xs-12 col-md-6">
+				<!-- Footer Copyright -->
+				<div class="copy-right">
+					<p>&copy; 2015 <a href="http://bootexperts.com/">BootExperts</a>, All Right Reserved</p>
+				</div>
+			</div>
+			<div class="col-xs-12 col-md-6">
+				<!-- Footer Payment -->
+				<div class="payment">
+					<a href="index.html#"><img src="{% static 'img/payment/1.png' %}" alt="" /></a>
+					<a href="index.html#"><img src="{% static 'img/payment/2.png' %}" alt="" /></a>
+					<a href="index.html#"><img src="{% static 'img/payment/3.png' %}" alt="" /></a>
+					<a href="index.html#"><img src="{% static 'img/payment/4.png' %}" alt="" /></a>
+					<a href="index.html#"><img src="{% static 'img/payment/5.png' %}" alt="" /></a>
+				</div>
+			</div>
+		</div>
+	</div>
+</div><!-- Footer Bottom End -->
+
+<!-- JS -->
+
+<!-- jQuery JS -->
+<script src="{% static 'js/jquery-1.11.3.min.js' %}"></script>
+<!-- Bootstrap JS -->
+<script src="{% static 'js/bootstrap.min.js' %}"></script>
+<!-- Nivo Slider JS -->
+<script src="{% static 'js/jquery.nivo.slider.pack.js' %}"></script>
+<!-- Mean Menu JS -->
+<script src="{% static 'js/jquery.meanmenu.min.js' %}"></script>
+<!-- Owl Carousel JS -->
+<script src="{% static 'js/owl.carousel.min.js' %}"></script>
+<!-- ScrollUP JS -->
+<script src="{% static 'js/jquery.scrollup.min.js' %}"></script>
+<!-- TreeView JS -->
+<script src="{% static 'js/jquery.treeview.js' %}"></script>
+<!-- Price Slider JS -->
+<script src="{% static 'js/jquery-price-slider.js' %}"></script>
+<!-- simpleLens JS -->
+<script src="{% static 'js/jquery.simpleLens.min.js' %}"></script>
+<!-- Match Height JS -->
+<script src="{% static 'js/jquery.matchHeight-min.js' %}"></script>
+<!-- WOW JS -->
+<script src="{% static 'js/wow.min.js' %}"></script>
+<script>
+	new WOW().init();
+</script>
+<!-- Main JS -->
+<script src="{% static 'js/main.js' %}"></script>
+
+</body>
+</html>

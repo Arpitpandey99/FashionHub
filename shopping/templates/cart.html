@@ -1,0 +1,114 @@
+{% extends 'base.html' %}
+{% block body %}
+{% load static %}
+<style>
+	.page-banner {
+  		background: rgba(0, 0, 0, 0) url("{% static 'img/background/shop-banner.jpg' %} ") no-repeat center center;
+  		-webkit-background-size: cover;
+  		background-size: cover;
+  		text-align: center;
+	}
+</style>
+<!-- Page Banner Start -->
+<div class="page-banner padding-120 fix">
+	<div class="container">
+		<div class="row">
+			<div class="col-xs-12">
+				<h1>Cart</h1>
+			</div>
+		</div>
+	</div>
+</div><!-- Page Banner End -->
+<div class="page-breadcrumb fix">
+	<div class="container">
+		<div class="row">
+			<div class="col-sm-12">
+				<ul>
+					<li><a href="cart.html#">Home</a></li>
+					<li><span>Cart</span></li>
+				</ul>
+			</div>
+		</div>
+	</div>
+</div>
+<!-- About Page Start -->
+<div class="cart-page page margin-70 fix">
+	<div class="container">
+		<div class="row">
+			<div class="col-xs-12">
+				<div class="table-responsive">
+					<table class="table cart-table">
+						<thead>
+							<tr>
+								<th class="width-1">Image</th>
+								<th class="width-2">PRODUCT NAME & DESCRIPTION</th>
+								<th class="width-3">UNIT PRICE</th>
+								<th class="width-6">ACTION</th>
+								<th class="width-6">Order</th>
+							</tr>														
+						</thead>
+						<tbody>
+							{% for i in mycart %}
+							<tr class="carttr_1">
+								<td>
+									<div class="cartpage-image">
+										<a href="cart.html#"><img alt="" src="{{ i.product.img1.url }}"></a>
+									</div>
+								</td>
+								<td>
+									<div class="cartpage-pro-dec">
+										<a href="cart.html#">{{ i.product.name}}</a>
+										<p>{{ i.product.discription }}</p>
+									</div>
+								</td>
+								<td>
+									<div class="cart-page-price">
+										<p>{{ i.product.price }}</p>
+									</div>
+								</td>
+								<td>
+									<div class="cartpage-delete-item">
+										<a title="Remove item" href="{% url 'remove' i.id %}"><i class="fa fa-trash-o"></i></a>
+									</div>
+								</td>
+								<td>
+									<div class="cartpage-delete-item">
+										<a title="Order Item" href="{% url 'order' i.product.id %}"><button class = "btn btn-info">Order</button></a>
+									</div>
+								</td>
+							</tr>
+							{% endfor %}
+						</tbody>									
+					</table>
+				</div>
+				<div class="cartpage-button fix">
+					<div class="button-left">
+						<a href="{% url 'home' %}"> <button class="btn">Continue Shopping</button></a>
+					</div>
+					<div class="button-right">
+						<a href="{% url 'clearcart' %}"> <button class="btn">Clear Shopping Cart</button></a>
+					</div>	
+				</div>		
+			</div>
+		</div>
+		
+		<div class="row">
+			<div class="col-lg-9 col-md-8 col-sm-6 col-xs-12">
+
+			</div>
+			<div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
+				<!-- total-amount start -->
+				<div class="cartpage-total-amount">
+					<p><span class="grand-t">Grand Total <span class="grand-t-p">{{ total }}</span></span>	</p>
+					<button class="btn">check out</button>
+				</div>
+				<!-- total-amount end -->
+			</div>
+		</div>
+		
+		
+		
+		
+	</div>
+</div><!-- About Page End -->	
+{% endblock %}

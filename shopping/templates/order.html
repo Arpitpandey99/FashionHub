@@ -1,0 +1,51 @@
+{% extends 'base.html' %}
+{% block body %}
+{% load static %}
+<!-- Page Banner Start -->
+<style>
+	.page-banner {
+  		background: rgba(0, 0, 0, 0) url("{% static 'img/background/shop-banner.jpg' %} ") no-repeat center center;
+  		-webkit-background-size: cover;
+  		background-size: cover;
+  		text-align: center;
+	}
+</style>
+<div class="page-banner padding-120 fix">
+	<div class="container">
+		<div class="row">
+			<div class="col-xs-12">
+				<h1>Order</h1>
+			</div>
+		</div>
+	</div>
+</div><!-- Page Banner End -->
+<div class="about-page page margin-70 fix">
+	<div class="container">
+		<div class="row">
+            <form action="" method="post">
+                {% csrf_token %}
+                 <div class="col-md-12">
+                    <div class="col-lg-4">
+                    </div>
+                    <div class="col-lg-4">
+                        <textarea style="height:150px" class="form-control" name="address">{{ address }}</textarea><br><br><br>
+                    </div>
+                    <div class="col-lg-4">
+                    </div>
+                </div>
+
+
+                <center><input type="submit"  class="btn btn-info" value="order"></center>
+
+
+            <br><br><br>
+
+
+
+            </form>
+
+
+	</div>
+</div>
+    <br><br><!-- About Page End -->
+{% endblock %}

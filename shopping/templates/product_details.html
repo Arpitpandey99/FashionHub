@@ -1,0 +1,262 @@
+{% extends 'base.html' %}
+{% block body %}
+{% load static %}
+<style>
+	.page-banner {
+  		background: rgba(0, 0, 0, 0) url("{% static 'img/background/shop-banner.jpg' %} ") no-repeat center center;
+  		-webkit-background-size: cover;
+  		background-size: cover;
+  		text-align: center;
+	}
+</style>
+<!-- Page Banner Start -->
+<div class="page-banner padding-120 fix">
+	<div class="container">
+		<div class="row">
+			<div class="col-xs-12">
+				<h1>Product Details</h1>
+			</div>
+		</div>
+	</div>
+</div><!-- Page Banner End -->
+<div class="page-breadcrumb fix">
+	<div class="container">
+		<div class="row">
+			<div class="col-sm-12">
+				<ul>
+					<li><a href="product-details.html#">shop</a></li>
+					<li><span>product details</span></li>
+				</ul>
+			</div>
+		</div>
+	</div>
+</div>
+<!-- About Page Start -->
+<div class="single-product-page page margin-top-70 fix">
+	<div class="container">
+		<div class="row">
+			<div class="single-product-wrapper margin-bottom-70 fix">
+				<div class="col-md-6 col-xs-12">
+					<div class="product-image">
+						<div class="tab-content">
+							<div role="tabpanel" class="tab-pane active" id="view-1">
+								<div class="simpleLens-big-image-container">
+									<a class="simpleLens-lens-image" data-lens-image="{{ product.img1.url }}">
+										<img src="{{ product.img1.url }}" alt="" class="simpleLens-big-image">
+									</a>
+								</div>
+							</div>
+							<div role="tabpanel" class="tab-pane" id="view-2">
+								<div class="simpleLens-big-image-container">
+									<a class="simpleLens-lens-image" data-lens-image="{{ product.img2.url }}">
+										<img src="{{ product.img2.url }}" alt="" class="simpleLens-big-image">
+									</a>
+								</div>
+							</div>
+							<div role="tabpanel" class="tab-pane" id="view-3">
+								<div class="simpleLens-big-image-container">
+									<a class="simpleLens-lens-image" data-lens-image="{{ product.img3.url }}">
+										<img src="{{ product.img3.url }}" alt="" class="simpleLens-big-image">
+									</a>
+								</div>
+							</div>
+						</div>
+						<ul class="nav nav-tabs" role="tablist">
+							<li class="active"><a href="product-details.html#view-1" data-toggle="tab"><img src="{{ product.img1.url }}" height="50px" width="100px" alt="" /></a></li>
+							<li><a href="product-details.html#view-2" data-toggle="tab"><img src=" {{ product.img2.url }}" height="50px" width="100px" alt="" /></a></li>
+							<li><a href="product-details.html#view-3" data-toggle="tab"><img src=" {{ product.img3.url }}" height="50px" width="100px" alt="" /></a></li>
+						</ul>
+					</div>
+				</div>
+				<div class="col-md-6 col-xs-12 fix">
+					<div class="single-pro-title fix">
+						<div class="name-price">
+							<h2 class="single-pro-name">{{ product.name }}</h2>
+							<p class="single-pro-price">
+								<span class="new">{{ product.price }}</span>
+
+							</p>
+						</div>
+						<div class="ratting-review">
+							<div class="ratting">
+								<i class="fa fa-star on"></i>
+								<i class="fa fa-star on"></i>
+								<i class="fa fa-star on"></i>
+								<i class="fa fa-star on"></i>
+								<i class="fa fa-star on"></i>
+							</div>
+							<p class="review-count">4 Review</p>
+						</div>
+					</div>
+					<div class="pro-description fix">
+						<h3>description</h3>
+						<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor        inciunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exetn lmco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in nde     rit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cuidatat non proident, sunt in culpa qui officia deserunt mollit anim.</p>
+					</div>
+					<div class="pro-actions fix">
+						<div class="pro-quantity float-left">
+							<input type="text" value="0" name="qtybutton" class="pro-quantity-box">
+						</div>
+							{% if not request.user.is_staff %}
+							{% if request.user.is_authenticated %}
+							<a href="{% url 'cart' product.id %}"><button class="act-btn add-cart"><i class="fa fa-shopping-basket"></i> add to cart</button></a>
+							{% else %}
+							<a href="{% url 'login' %}"><button class="act-btn add-cart"><i class="fa fa-shopping-basket"></i> add to cart</button></a>
+							{% endif %}
+							{% endif %}
+						 	<a href="product-details.html#" class="act-btn favorite"><i class="fa fa-heart-o"></i></a>
+					</div>
+				</div>
+			</div>
+			<div class="sin-pro-tab col-xs-12 margin-bottom-70">
+				<ul class="sin-pro-tab-list">
+					<li class="active"><a data-toggle="tab" href="product-details.html#pro-des">Product Description</a></li>
+					<li class=""><a data-toggle="tab" href="product-details.html#pro-reviews">Reviews</a></li>
+					<li class=""><a data-toggle="tab" href="product-details.html#pro-tags">Product Tags</a></li>
+				</ul>
+				<div class="sin-pro-tab-container tab-content fix">
+					<div class="tab-pane active" id="pro-des">
+						<p>Nunc facilisis sagittis ullamcorper. Proin lectus ipsum, gravida et mattis vulputate, tristique ut lectus. Sed et lorem nunc. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Aenean eleifend laoreet congue. Vivamus adipiscing nisl ut dolor dignissim semper. Nulla luctus malesuada tincidunt. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Integer enim purus, posuere at ultricies eu, placerat a felis. Suspendisse aliquet urna pretium eros convallis interdum. Quisque in arcu id dui vulputate mollis eget non arcu. Aenean et nulla purus. Mauris vel tellus non nunc mattis lobortis. Nunc facilisis sagittis ullamcorper. Proin lectus ipsum, gravida et mattis vulputate, tristique ut lectus. Sed et lorem nunc. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Aenean eleifend laoreet congue. Vivamus adipiscing nisl ut dolor dignissim semper. Nulla luctus malesuada tincidunt. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Integer enim purus, posuere at ultricies eu, placerat a felis. Suspendisse aliquet urna pretium eros convallis interdum. Quisque in arcu id dui vulputate mollis eget non arcu. Aenean et nulla purus. Mauris vel tellus non nunc mattis lobortis.</p>
+					</div>
+					<div class="tab-pane" id="pro-reviews">
+						<p>Nunc facilisis sagittis ullamcorper. Proin lectus ipsum, gravida et mattis vulputate, tristique ut lectus. Sed et lorem nunc. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Aenean eleifend laoreet congue. Vivamus adipiscing nisl ut dolor dignissim semper. Nulla luctus malesuada tincidunt. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Integer enim purus, posuere at ultricies eu, placerat a felis. Suspendisse aliquet urna pretium eros convallis interdum. Quisque in arcu id dui vulputate mollis eget non arcu. Aenean et nulla purus. Mauris vel tellus non nunc mattis lobortis. Nunc facilisis sagittis ullamcorper. Proin lectus ipsum, gravida et mattis vulputate, tristique ut lectus. Sed et lorem nunc. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Aenean eleifend laoreet congue. Vivamus adipiscing nisl ut dolor dignissim semper. Nulla luctus malesuada tincidunt. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Integer enim purus, posuere at ultricies eu, placerat a felis. Suspendisse aliquet urna pretium eros convallis interdum. Quisque in arcu id dui vulputate mollis eget non arcu. Aenean et nulla purus. Mauris vel tellus non nunc mattis lobortis.</p>
+					</div>
+					<div class="tab-pane" id="pro-tags">
+						<p>Nunc facilisis sagittis ullamcorper. Proin lectus ipsum, gravida et mattis vulputate, tristique ut lectus. Sed et lorem nunc. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Aenean eleifend laoreet congue. Vivamus adipiscing nisl ut dolor dignissim semper. Nulla luctus malesuada tincidunt. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Integer enim purus, posuere at ultricies eu, placerat a felis. Suspendisse aliquet urna pretium eros convallis interdum. Quisque in arcu id dui vulputate mollis eget non arcu. Aenean et nulla purus. Mauris vel tellus non nunc mattis lobortis. Nunc facilisis sagittis ullamcorper. Proin lectus ipsum, gravida et mattis vulputate, tristique ut lectus. Sed et lorem nunc. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Aenean eleifend laoreet congue. Vivamus adipiscing nisl ut dolor dignissim semper. Nulla luctus malesuada tincidunt. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Integer enim purus, posuere at ultricies eu, placerat a felis. Suspendisse aliquet urna pretium eros convallis interdum. Quisque in arcu id dui vulputate mollis eget non arcu. Aenean et nulla purus. Mauris vel tellus non nunc mattis lobortis.</p>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-xs-12">	
+				<div class="section-title fix">
+					<h2>Related Product</h2>
+				</div>
+				<!-- Blog Slider -->
+				<div class="propular-slider related-product owl-carousel">
+					<!-- Single Tab Product -->
+					<div class="single-product">
+						<div class="pro-image-hover">
+							<a href="product-details.html#" class="pro-image">
+								<img class="primary" src=" {% static 'img/tab-product/11.jpg' %}" alt="" />
+							</a>
+							<div class="action-buttons">
+								<a class="act-btn quick-view" href="product-details.html#"><i class="fa fa-search"></i></a>
+								<a class="act-btn favorite" href="product-details.html#"><i class="fa fa-heart-o"></i></a>
+								<button class="act-btn add-cart"><i class="fa fa-shopping-basket"></i></button>
+							</div>
+						</div>
+						<div class="pro-bref fix">
+							<a class="pro-name" href="product-details.html">Product Name Demo</a>
+							<div class="pro-ratting float-left">
+								<i class="fa fa-star on"></i>
+								<i class="fa fa-star on"></i>
+								<i class="fa fa-star on"></i>
+								<i class="fa fa-star on"></i>
+								<i class="fa fa-star"></i>
+							</div>
+							<div class="pro-price float-right"><span class="new">$152</span><span class="old">$175</span></div>
+						</div>
+					</div>
+					<!-- Single Tab Product -->
+					<div class="single-product">
+						<div class="pro-image-hover">
+							<a class="pro-image" href="product-details.html">
+								<img class="primary" src=" {% static 'img/tab-product/12.jpg' %}" alt="" />
+								<img class="secoundary" src=" {% static 'img/tab-product/16.jpg' %}" alt="" />
+							</a>
+							<div class="action-buttons">
+								<a class="act-btn quick-view" href="product-details.html#"><i class="fa fa-search"></i></a>
+								<a class="act-btn favorite" href="product-details.html#"><i class="fa fa-heart-o"></i></a>
+								<button class="act-btn add-cart"><i class="fa fa-shopping-basket"></i></button>
+							</div>
+						</div>
+						<div class="pro-bref fix">
+							<a class="pro-name" href="product-details.html">Product Name Demo</a>
+							<div class="pro-ratting float-left">
+								<i class="fa fa-star on"></i>
+								<i class="fa fa-star on"></i>
+								<i class="fa fa-star on"></i>
+								<i class="fa fa-star on"></i>
+								<i class="fa fa-star"></i>
+							</div>
+							<div class="pro-price float-right"><span class="new">$152</span><span class="old">$175</span></div>
+						</div>
+					</div>
+					<!-- Single Tab Product -->
+					<div class="single-product">
+						<div class="pro-image-hover">
+							<a class="pro-image" href="product-details.html">
+								<img class="primary" src=" {% static 'img/tab-product/13.jpg' %}" alt="" />
+							</a>
+							<div class="action-buttons">
+								<a class="act-btn quick-view" href="product-details.html#"><i class="fa fa-search"></i></a>
+								<a class="act-btn favorite" href="product-details.html#"><i class="fa fa-heart-o"></i></a>
+								<button class="act-btn add-cart"><i class="fa fa-shopping-basket"></i></button>
+							</div>
+						</div>
+						<div class="pro-bref fix">
+							<a class="pro-name" href="product-details.html">Product Name Demo</a>
+							<div class="pro-ratting float-left">
+								<i class="fa fa-star on"></i>
+								<i class="fa fa-star on"></i>
+								<i class="fa fa-star on"></i>
+								<i class="fa fa-star on"></i>
+								<i class="fa fa-star"></i>
+							</div>
+							<div class="pro-price float-right"><span class="new">$152</span><span class="old">$175</span></div>
+						</div>
+					</div>
+					<!-- Single Tab Product -->
+					<div class="single-product">
+						<div class="pro-image-hover">
+							<a class="pro-image" href="product-details.html">
+								<img class="primary" src=" {% static 'img/tab-product/15.jpg' %}" alt="" />
+							</a>
+							<div class="action-buttons">
+								<a class="act-btn quick-view" href="product-details.html#"><i class="fa fa-search"></i></a>
+								<a class="act-btn favorite" href="product-details.html#"><i class="fa fa-heart-o"></i></a>
+								<button class="act-btn add-cart"><i class="fa fa-shopping-basket"></i></button>
+							</div>
+						</div>
+						<div class="pro-bref fix">
+							<a class="pro-name" href="product-details.html">Product Name Demo</a>
+							<div class="pro-ratting float-left">
+								<i class="fa fa-star on"></i>
+								<i class="fa fa-star on"></i>
+								<i class="fa fa-star on"></i>
+								<i class="fa fa-star on"></i>
+								<i class="fa fa-star"></i>
+							</div>
+							<div class="pro-price float-right"><span class="new">$152</span><span class="old">$175</span></div>
+						</div>
+					</div>
+					<!-- Single Tab Product -->
+					<div class="single-product">
+						<div class="pro-image-hover">
+							<a class="pro-image" href="product-details.html">
+								<img class="primary" src=" {% static 'img/tab-product/17.jpg' %}" alt="" />
+							</a>
+							<div class="action-buttons">
+								<a class="act-btn quick-view" href="product-details.html#"><i class="fa fa-search"></i></a>
+								<a class="act-btn favorite" href="product-details.html#"><i class="fa fa-heart-o"></i></a>
+								<button class="act-btn add-cart"><i class="fa fa-shopping-basket"></i></button>
+							</div>
+						</div>
+						<div class="pro-bref fix">
+							<a class="pro-name" href="product-details.html">Product Name Demo</a>
+							<div class="pro-ratting float-left">
+								<i class="fa fa-star on"></i>
+								<i class="fa fa-star on"></i>
+								<i class="fa fa-star on"></i>
+								<i class="fa fa-star on"></i>
+								<i class="fa fa-star"></i>
+							</div>
+							<div class="pro-price float-right"><span class="new">$152</span><span class="old">$175</span></div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div><!-- About Page End -->	
+{% endblock %}
